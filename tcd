@@ -1,0 +1,9 @@
+#! /usr/bin/bash
+
+c_d="$PWD"
+xdotool key super+t
+pid=$(ps ux | grep 'st' | awk '{this=last;last=$0} END{print this}' | awk '{print $2}')
+x=$(xdotool search --pid "$pid")
+sleep .1
+xdotool type --delay 8 --clearmodifiers --window "$x" "cd $c_d"
+xdotool key --window "$x" Return
